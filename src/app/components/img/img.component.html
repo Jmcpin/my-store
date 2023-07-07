@@ -1,0 +1,5 @@
+<!--<h2> {{ this.count }} </h2>-->
+<img [src]="img" (load)="imgLoaded()" (error)="imgError()" *ngIf="img; else elseError"/>
+<ng-template #elseError>
+  <img src="../../../assets/descargar.png" width="200">
+</ng-template>

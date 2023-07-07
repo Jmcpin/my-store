@@ -1,0 +1,11 @@
+<app-img [img]="product_hijo.images[0]"></app-img>
+<h2>Price: ${{ product_hijo.price | currency: 'COP' }} </h2>
+<p>ID: {{ product_hijo.id }} </p>
+<p>Name: {{ product_hijo.title | reverse }} </p>
+<p appHighlight> {{ product_hijo.description }} </p>
+<p> Impuesto: {{ product_hijo.impuesto ?? '' | currency: 'COP' }} </p>
+<button (click)="onAddToCart()">Add to cart</button>
+<button (click)="onBtnDetalleProducto(product_hijo.id)" >Ver más Detalle</button>
+<!-- product_hijo.impuesto ?? '' si la propiedad es null o undefined coloca un string vacio-->
+<!--<img [src]="product_hijo.image" width="200" />-->
+<hr>

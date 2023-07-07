@@ -1,0 +1,52 @@
+<!--<p>
+  La cantidad: {{ myShoppingCart_Products.length }}
+</p>
+<p>
+  Total: {{ totalCar }}
+</p>
+<p>
+  Today: {{ today | date:'short' }}
+</p>
+<p>
+  Today: {{ date | timeAgo }}
+</p>
+<p>
+  Otra fecha: {{ date | date:'yyy--dd--MM' }}
+</p>
+<P>
+  {{ 'hOlA cOmO EsTaS' | uppercase  }}
+</P>-->
+<!--<button (click)="toggleProductDetail()">Click toggle</button>-->
+<button (click)="CreateNewProduct()">Crear Producto</button>
+<button (click)="Event_Detalle_Product_Padre('2212312')">Producto no encontrado</button>
+<button (click)="readAndUpdate('4')">Prueba Callback Hell</button>
+<div class="products--grip">
+
+  <app-product (addedProductHijo)="onAddShoppingCart($event)"
+    *ngFor="let item_product of product_padre"
+    [product_hijo]="item_product"
+    (Event_Detalle_Product_Hijo)="Event_Detalle_Product_Padre($event)"
+    >
+
+  </app-product>
+  <!--<button (click)="getProductsByPageBtn()">Siguiente Página</button>-->
+  <button (click)="CargarMasProductos()">Siguiente Página</button>
+</div>
+
+<div class="product-detail" [class.active]="showProductDetail">
+  {{ estadoDetalleProducto }}
+  <div *ngIf="Producto_Ver_Detalle">
+    <button (click)="toggleProductDetail()" >Close</button>
+    <h2> {{ Producto_Ver_Detalle.title }} </h2>
+    <swiper
+      [slidesPerView]="1"
+    >
+      <ng-template swiperSlide *ngFor="let item of Producto_Ver_Detalle.images">
+        <img [src]="item" >
+      </ng-template>
+    </swiper>
+    <p> {{ Producto_Ver_Detalle.description }} </p>
+    <button (click)="Btn_Click_Update_Product()">Editar</button>
+    <button (click)="deleteProduct()">Eliminar</button>
+  </div>
+</div>
