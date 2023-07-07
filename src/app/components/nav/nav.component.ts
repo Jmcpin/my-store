@@ -3,6 +3,8 @@ import { StoreService } from '../../services/store.service'; // 5.- Importar el 
 import { AuthService } from '../../services/auth.service';
 import { user } from '../../models/user.model';
 import { switchMap } from 'rxjs/operators';
+import { CategoriesService } from '../../services/categories.service';
+import { Category } from '../../models/category.model';
 
 @Component({
   selector: 'app-nav',
@@ -18,11 +20,13 @@ export class NavComponent implements OnInit{
     email: '',
     password: '',
     name: ''
-  }
+  };
+  categories: Category[] = [];
 
   constructor (
     private storeService: StoreService, // 6.- Declarar en constructor el Store Service donde se encuentra el observable
-    private authService: AuthService
+    private authService: AuthService,
+    private categoriesService: CategoriesService
     ) {
 
   }
@@ -30,6 +34,7 @@ export class NavComponent implements OnInit{
   ngOnInit(): void {
     this.storeService.myCarNavHeader$.subscribe(products_listt => { // 7.- Este componente Nav ya se suscribio al servicio de store servicio
       this.counter = products_listt.length; // 8.- y se realiza la acción deseada
+      this.getAllCategories();
     });
   }
 
@@ -53,6 +58,12 @@ export class NavComponent implements OnInit{
 
         //this.getProfile();
       });
+  }
+
+  getAllCategories(){
+    this.categoriesService.getAll().subscribe(data => {
+      this.categories = data;
+    })
   }
 /*
   login(){
