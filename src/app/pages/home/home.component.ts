@@ -13,7 +13,7 @@ export class HomeComponent implements OnInit  {
   product_padre_home: Product[] = [];
   limit = 10;
   offset = 0;
-  productId: string | null = null;
+  productId_HomePadre: string | null = null;
 
   constructor (
     private productsService: ProductsService,
@@ -27,10 +27,10 @@ export class HomeComponent implements OnInit  {
     .subscribe(data => {
       this.product_padre_home = data;
       this.offset = this.offset + this.limit;
-      this.route.queryParamMap.subscribe(parametros => {
-        this.productId = parametros.get('product');
-        console.log("productID => ",this.productId);
-      })
+    });
+    this.route.queryParamMap.subscribe(parametros => {
+      this.productId_HomePadre = parametros.get('product');
+      console.log("productID => ",this.productId_HomePadre);
     });
   }
 

@@ -1,2 +1,6 @@
 <p>category works!</p>
-<app-products [product_padre]="product_padre_category" (CargarMasProductosEmitter)="onCargarMasProductosCategoryPadre()"></app-products>
+<app-products
+  [productId_HijoProducts]="productId_CategoryPadre"
+  [product_padre]="product_padre_category"
+  (CargarMasProductosEmitter)="onCargarMasProductosCategoryPadre()"
+></app-products>

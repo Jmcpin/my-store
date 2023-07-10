@@ -2,7 +2,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Product, Producto_nuevo_tipado, Product_Update_tipado } from '../../models/product.model';
 import { StoreService } from '../../services/store.service';
 import { ProductsService } from '../../services/products.service';
-import Swal from "sweetalert2";
+import Swal from 'sweetalert2';
 import { switchMap } from 'rxjs/operators'; //alternativa para evita el callback hell que dependen una de otra
 //import { zip } from 'rxjs'; //comprimen o abjunta dos o mas observadores para que se ejecuten al mismo tiempo
 
@@ -18,6 +18,13 @@ export class ProductsComponent {
   totalCar = 0;
 
   @Input() product_padre: Product[] = [];
+  //@Input() productId: string | null = null;
+  @Input()
+    set productId_HijoProducts(id: string | null){
+      if(id){
+        this.Event_Detalle_Product_Padre(id);
+      }
+    }
   @Output() CargarMasProductosEmitter = new EventEmitter();
 
   today = new Date();
@@ -86,10 +93,13 @@ export class ProductsComponent {
   Event_Detalle_Product_Padre(id: string){
     this.estadoDetalleProducto = "loading"
     //this.toggleProductDetail();
+    if(!this.showProductDetail){// si esta cerrado (falso)... entonces abrirlo
+      this.showProductDetail = true //se abre la ventana (true)
+    }
     this.productsService.getEvent_Detalle_Product_Padre(id)
     .subscribe(data => {
       console.log("Dato del ID", data);
-      this.toggleProductDetail();
+    //  this.toggleProductDetail();
       this.Producto_Ver_Detalle = data;
       this.estadoDetalleProducto = "success";
     }, errorMsg => {

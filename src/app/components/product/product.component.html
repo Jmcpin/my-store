@@ -7,7 +7,14 @@
 <p appHighlight> {{ product_hijo.description }} </p>
 <p> Impuesto: {{ product_hijo.impuesto ?? '' | currency: 'COP' }} </p>
 <button (click)="onAddToCart()">Add to cart</button>
-<button (click)="onBtnDetalleProducto(product_hijo.id)" >Ver más Detalle</button>
+<a routerLink='.' [queryParams]="{product: product_hijo.id}">Ver más</a>
+<!--se puso routerLink='.' porque se reutiliza el componente para home y category
+y si uno estaba desde la ruta de category, el routerLink='/home' manda a la ruta de home
+y con el . redirecciona la ruta actual, ya sea que estes en home o en category
+https://platzi.com/clases/2487-angular-modular/41191-parametros-url/
+minuto 10:40  -->
+<!--<a routerLink='/home' [queryParams]="{product: product_hijo.id}">Ver más</a>-->
+<!--<button (click)="onBtnDetalleProducto(product_hijo.id)" >Ver más Detalle</button>-->
 <!-- product_hijo.impuesto ?? '' si la propiedad es null o undefined coloca un string vacio-->
 <!--<img [src]="product_hijo.image" width="200" />-->
 <hr>

@@ -1,1 +1,5 @@
-<app-products [product_padre]="product_padre_home" (CargarMasProductosEmitter)="onCargarMasProductosPadre()"></app-products>
+<app-products
+  [productId_HijoProducts]="productId_HomePadre"
+  [product_padre]="product_padre_home"
+  (CargarMasProductosEmitter)="onCargarMasProductosPadre()"
+  ></app-products>
