@@ -11,8 +11,8 @@ import { ActivatedRoute } from '@angular/router';
 export class HomeComponent implements OnInit  {
 
   product_padre_home: Product[] = [];
-  limit = 10;
-  offset = 0;
+  offset: number = 0;
+  limit: number = 10;
   productId_HomePadre: string | null = null;
 
   constructor (
@@ -23,7 +23,7 @@ export class HomeComponent implements OnInit  {
   }
 
   ngOnInit(): void {
-    this.productsService.getAllProducts_services(0,10)
+    this.productsService.getAllProducts_services(this.offset, this.limit)
     .subscribe(data => {
       this.product_padre_home = data;
       this.offset = this.offset + this.limit;

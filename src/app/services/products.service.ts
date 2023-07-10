@@ -21,10 +21,10 @@ export class ProductsService {
   getAllProducts_services(offset: number, limit: number){ // Consultar la lista de todos los productos
     /*                    offset?: number, limit?: number */
     let params = new HttpParams;
-    /*if(offset && limit){ */
+    if(offset !== null && limit !== null){
       params = params.set('offset', offset);
       params = params.set('limit', limit);
-    /*}*/
+    }
     return this.http_Apii.get<Product[]>(`${this.UrlApi}/products`, { params, context: checkTime() })
     // 6.- CONTEXTO: Se coloca context: checkTime() para encencer el interceptor en esta peticion (requets)
     .pipe(
@@ -88,8 +88,10 @@ export class ProductsService {
 
   getByCategory(idCategory: string, offset: number, limit: number){
     let params = new HttpParams;
+    if(offset !== null && limit !== null){
       params = params.set('offset', offset);
       params = params.set('limit', limit);
+    }
       return this.http_Apii.get<Product[]>(`${this.UrlApi}/categories/${idCategory}/products`, { params })
   }
 

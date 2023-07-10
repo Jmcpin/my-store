@@ -1,6 +1,7 @@
 <a [routerLink]="['/product',product_hijo.id]">
   <app-img [img]="product_hijo.images[0]"></app-img>
 </a>
+<p>Categoria: {{product_hijo.category.id}}</p>
 <h2>Price: ${{ product_hijo.price | currency: 'COP' }} </h2>
 <p>ID: {{ product_hijo.id }} </p>
 <p>Name: {{ product_hijo.title | reverse }} </p>
