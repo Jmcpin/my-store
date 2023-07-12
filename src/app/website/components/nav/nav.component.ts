@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { StoreService } from '../../services/store.service'; // 5.- Importar el Store Service donde esta el observable
-import { AuthService } from '../../services/auth.service';
-import { user } from '../../models/user.model';
+import { StoreService } from '../../../services/store.service'; // 5.- Importar el Store Service donde esta el observable
+import { AuthService } from '../../../services/auth.service';
+import { user } from '../../../models/user.model';
 import { switchMap } from 'rxjs/operators';
-import { CategoriesService } from '../../services/categories.service';
-import { Category } from '../../models/category.model';
+import { CategoriesService } from '../../../services/categories.service';
+import { Category } from '../../../models/category.model';
 
 @Component({
   selector: 'app-nav',
