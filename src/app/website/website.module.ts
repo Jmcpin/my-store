@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SwiperModule } from 'swiper/angular';
+import { QuicklinkModule } from 'ngx-quicklink';
+//18 - Angular Router: Lazy LOading y Programacion modular - QuickLink Strategy|
 
 import { WebsiteRoutingModule } from './website-routing.module';
 import { SharedModule } from './../shared/shared.module';
@@ -31,7 +33,8 @@ import { LayoutComponent } from './components/layout/layout.component';
     CommonModule,
     WebsiteRoutingModule,
     SwiperModule, // Slide
-    SharedModule
+    SharedModule,
+    QuicklinkModule
   ]
 })
 export class WebsiteModule { }
