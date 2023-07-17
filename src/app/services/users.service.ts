@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { user, createUser } from '../models/user.model';
+import { User, createUser } from '../models/user.model';
 import { environment } from './../../environments/environment';
 
 @Injectable({
@@ -17,11 +17,11 @@ export class UsersService {
   }
 
   create(dto: createUser){
-    return this.httpApii.post<user>(this.UrlApi,dto);
+    return this.httpApii.post<User>(this.UrlApi,dto);
   }
 
   getAll(){
-    return this.httpApii.get<user[]>(this.UrlApi);
+    return this.httpApii.get<User[]>(this.UrlApi);
   }
 
 }

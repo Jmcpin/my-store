@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { StoreService } from '../../../services/store.service'; // 5.- Importar el Store Service donde esta el observable
 import { AuthService } from '../../../services/auth.service';
-import { user } from '../../../models/user.model';
+import { User } from '../../../models/user.model';
 import { switchMap } from 'rxjs/operators';
 import { CategoriesService } from '../../../services/categories.service';
 import { Category } from '../../../models/category.model';
@@ -15,11 +15,12 @@ export class NavComponent implements OnInit{
   activeMenu = false;
   counter = 0;
   //token = '';
-  profile: user = {
+  profile: User = {
     id: 0,
     email: '',
     password: '',
-    name: ''
+    name: '',
+    role: 'customer',
   };
   categories: Category[] = [];
 

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from './../../environments/environment';
 import { Auth } from '../models/auth.model';
-import { user } from '../models/user.model';
+import { User } from '../models/user.model';
 import { TokenService } from '../services/token.service'; //envia y obtiene el token en localstorage
 import { tap } from 'rxjs/operators';
 
@@ -33,7 +33,7 @@ export class AuthService {
 //    Profile() ya no se usara porque el token se guardara en services/token en localStorage
 //    const header = new HttpHeaders();
 //    header.set('Authorization', `Bearer ${token}`);
-    return this.httpApii.get<user>(`${this.UrlApi}/profile`, {
+    return this.httpApii.get<User>(`${this.UrlApi}/profile`, {
 //      headers: { // se quito por para el funcionamiento del interceptor
 //        Authorization: `Bearer ${token}`,
 //      'Content-type': 'application/json'
