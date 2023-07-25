@@ -35,12 +35,13 @@
     </nav>
     <div class="info">
       <div class="account">
-        <button *ngIf="profile; else elseBlock" (click)="login()">Login</button>
+        <button *ngIf="!profile; else elseBlock" (click)="login()">Login</button>
         <!--<ng-template #elseBlock>{{ profile.email }}</ng-template>-->
         <ng-template #elseBlock>
-          <a routerLink="/profile">{{ profile.email }}</a>
+          <a routerLink="/profile">{{ profile?.email }}</a>
+          <button (click)="logout()">Logout</button>
         </ng-template>
-        Provide.email = {{ profile.email }}
+        <!-- Provide.email = {{ profile.email }} -->
       </div>
       <div>
         <a href="">

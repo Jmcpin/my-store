@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 //import { Product } from './models/product.model';
 import { UsersService } from './services/users.service';
 import { AuthService } from './services/auth.service';
@@ -9,7 +9,7 @@ import { FilesService } from './services/files.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit{
 
   constructor (
     private usersService: UsersService,
@@ -17,6 +17,12 @@ export class AppComponent {
     private filesService: FilesService
   ) {
 
+  }
+
+  ngOnInit(): void {
+    this.usersService.getAll().subscribe(data => {
+      console.log("Datos de usuario => ",data);
+    })
   }
 
   imgParent = "https://www.w3schools.com/howto/img_avatar.png";
@@ -37,8 +43,8 @@ export class AppComponent {
 
   createUser(){
     this.usersService.create({
-      name: "Pablo",
-      email: "pablo1@hotmail.com",
+      name: "pablo2",
+      email: "pablo2@hotmail.com",
       password: "112233",
       role: 'customer',
     })
@@ -48,7 +54,7 @@ export class AppComponent {
   }
 
   login(){
-    this.authService.login("pablo1@hotmail.com","112233")
+    this.authService.login("pablo2@hotmail.com","112233")
     .subscribe(rta => {
       console.log(rta.access_token);
       this.token = rta.access_token;

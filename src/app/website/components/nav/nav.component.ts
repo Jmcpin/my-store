@@ -5,6 +5,7 @@ import { User } from '../../../models/user.model';
 import { switchMap } from 'rxjs/operators';
 import { CategoriesService } from '../../../services/categories.service';
 import { Category } from '../../../models/category.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-nav',
@@ -15,19 +16,21 @@ export class NavComponent implements OnInit{
   activeMenu = false;
   counter = 0;
   //token = '';
-  profile: User = {
+  /*profile: User = {
     id: 0,
     email: '',
     password: '',
     name: '',
     role: 'customer',
-  };
+  };*/
+  profile: User | null = null;
   categories: Category[] = [];
 
   constructor (
     private storeService: StoreService, // 6.- Declarar en constructor el Store Service donde se encuentra el observable
     private authService: AuthService,
-    private categoriesService: CategoriesService
+    private categoriesService: CategoriesService,
+    private router : Router
     ) {
 
   }
@@ -36,6 +39,7 @@ export class NavComponent implements OnInit{
     this.storeService.myCarNavHeader$.subscribe(products_listt => { // 7.- Este componente Nav ya se suscribio al servicio de store servicio
       this.counter = products_listt.length; // 8.- y se realiza la acción deseada
       this.getAllCategories();
+      this.ProfileExist();
     });
   }
 
@@ -44,7 +48,7 @@ export class NavComponent implements OnInit{
   }
 
   login(){
-    this.authService.login('pablo1@hotmail.com','112233')
+    this.authService.login('john@mail.com','changeme')
       .pipe(
         switchMap(() => {
           //this.token = item.access_token;
@@ -61,11 +65,26 @@ export class NavComponent implements OnInit{
       });
   }
 
+  ProfileExist(){ // Echo por mi para que cuando se recargara la ruta 'profile' se mantuviera visitble el correo del profile si ya estaba logeado
+    this.authService.profile().subscribe(data => {
+      if(data){
+        this.profile = data;
+      }
+    })
+  }
+
   getAllCategories(){
     this.categoriesService.getAll().subscribe(data => {
       this.categories = data;
     })
   }
+
+  logout(){
+    this.authService.logout(); //1- Elimina el Token del localstorage
+    this.profile = null; //2- Deja en nulo los datos del profile
+    this.router.navigate(['/home']);//3- Va a reedireccionar a la ruta '/home'
+  }
+
 /*
   login(){
     this.authService.login('pablo1@hotmail.com','112233')

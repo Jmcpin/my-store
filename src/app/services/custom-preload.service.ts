@@ -10,7 +10,7 @@ export class CustomPreloadService implements PreloadingStrategy {
   constructor() { }
 
   preload(route: Route, load: () => Observable<any>): Observable<any> { //Debe retornar un observable
-    if (route.data && route.data['preload']) { //si route.data['preload'] = true
+    if (route.data && route.data['preload']) { //si route.data['preload'] = true y tiene un dato que se llama 'preload'
       return load(); //retorna un observable y con esto se va a precargar el modulo
     }
     return of(null); // //retorna un observable en vacio, y con esto no precarga el modulo actual

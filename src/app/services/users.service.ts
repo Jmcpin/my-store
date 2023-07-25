@@ -9,6 +9,7 @@ import { environment } from './../../environments/environment';
 export class UsersService {
 
   private UrlApi = `${environment.API_URL}/api/users`;
+  private UrlApiCreateUsers = `${environment.API_URL_CREATE_USERS}/api/users`;
 
   constructor(
     private httpApii: HttpClient
@@ -17,11 +18,11 @@ export class UsersService {
   }
 
   create(dto: createUser){
-    return this.httpApii.post<User>(this.UrlApi,dto);
+    return this.httpApii.post<User>(this.UrlApiCreateUsers,dto);
   }
 
   getAll(){
-    return this.httpApii.get<User[]>(this.UrlApi);
+    return this.httpApii.get<User[]>(this.UrlApiCreateUsers);
   }
 
 }
