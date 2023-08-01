@@ -4,10 +4,10 @@ import {
   HttpHandler,
   HttpEvent,
   HttpInterceptor,
-  HTTP_INTERCEPTORS,
   HttpErrorResponse,
   HttpStatusCode
 } from '@angular/common/http';
+//import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
@@ -15,7 +15,7 @@ import { catchError } from 'rxjs/operators';
 @Injectable()
 export class ErrorsInterceptor implements HttpInterceptor {
 
-  constructor() {}
+  //constructor() {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     return next

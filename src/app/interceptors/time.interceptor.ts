@@ -20,7 +20,7 @@ export function checkTime(){ // 3.- CONTEXTO: Esta funcion va habilitar o no la 
 @Injectable()
 export class TimeInterceptor implements HttpInterceptor {
 
-  constructor() {}
+  //constructor() {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     if (request.context.get(CHECK_TIME)){ // 4.- CONTEXTO: Aqui hace la condicion o validacion si esta prendido este contexto en una peticion

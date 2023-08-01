@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { UsersService } from './services/users.service';
 import { AuthService } from './services/auth.service';
 import { FilesService } from './services/files.service';
+import { TokenService } from './services/token.service';
 
 @Component({
   selector: 'app-root',
@@ -14,7 +15,8 @@ export class AppComponent implements OnInit{
   constructor (
     private usersService: UsersService,
     private authService: AuthService,
-    private filesService: FilesService
+    private filesService: FilesService,
+    private tokenService:TokenService,
   ) {
 
   }
@@ -22,7 +24,14 @@ export class AppComponent implements OnInit{
   ngOnInit(): void {
     this.usersService.getAll().subscribe(data => {
       console.log("Datos de usuario => ",data);
-    })
+    });
+    //
+    const token = this.tokenService.getToken();
+    if(token){
+      this.authService.profile()//manda a llamar a profile y dentro de profile emite hacia el estado global
+      .subscribe()
+    }
+    // Se realiza esto para cuando recargue la pagina se valide si existe un usuario o no
   }
 
   imgParent = "https://www.w3schools.com/howto/img_avatar.png";
