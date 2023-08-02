@@ -53,7 +53,7 @@ export class NavComponent implements OnInit, OnDestroy {
   }
 
   login(){
-    this.authService.login('john@mail.com','changeme')
+    this.authService.login('admin@mail.com','admin123')
       .pipe(
         switchMap(() => {
           //this.token = item.access_token;

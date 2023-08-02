@@ -23,7 +23,7 @@ constructor(
       return this.authService.user$
       .pipe(
         map(user => {
-          if(user?.role === 'admin'){ //Si tiene un role que admin entonces si dejar visualizar el guards
+          if(user?.role === 'admin'){ //Si tiene un role de admin entonces si dejar visualizar el guards
             return true;
           } else { // si no tiene un role que no es admin entonces no dejar entrar y redireccionar al home
             this.router.navigate(['/home']);
